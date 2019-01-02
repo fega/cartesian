@@ -1,5 +1,3 @@
-var extend = require('xtend/immutable');
-
 // Public API
 module.exports = cartesian;
 
@@ -9,28 +7,23 @@ module.exports = cartesian;
  * @param   {object|array} list - list of (array) properties or array of arrays
  * @returns {array} all the combinations of the properties
  */
-function cartesian(list)
-{
+function cartesian(list) {
   var last, init, keys, product = [];
 
-  if (Array.isArray(list))
-  {
+  if (Array.isArray(list)) {
     init = [];
     last = list.length - 1;
   }
-  else if (typeof list == 'object' && list !== null)
-  {
+  else if (typeof list == 'object' && list !== null) {
     init = {};
     keys = Object.keys(list);
     last = keys.length - 1;
   }
-  else
-  {
+  else {
     throw new TypeError('Expecting an Array or an Object, but `' + (list === null ? 'null' : typeof list) + '` provided.');
   }
 
-  function add(row, i)
-  {
+  function add(row, i) {
     var j, k, r;
 
     k = keys ? keys[i] : i;
@@ -38,17 +31,14 @@ function cartesian(list)
     // either array or not, not expecting objects here
     Array.isArray(list[k]) || (typeof list[k] == 'undefined' ? list[k] = [] : list[k] = [list[k]]);
 
-    for (j=0; j < list[k].length; j++)
-    {
+    for (j = 0; j < list[k].length; j++) {
       r = clone(row);
       store(r, list[k][j], k);
 
-      if (i >= last)
-      {
+      if (i >= last) {
         product.push(r);
       }
-      else
-      {
+      else {
         add(r, i + 1);
       }
     }
@@ -65,9 +55,8 @@ function cartesian(list)
  * @param   {object|array} obj - object or array to clone
  * @returns {object|array} - shallow copy of the provided object or array
  */
-function clone(obj)
-{
-  return Array.isArray(obj) ? [].concat(obj) : extend(obj);
+function clone(obj) {
+  return Array.isArray(obj) ? [].concat(obj) : Object.assign({}, obj);
 }
 
 /**
@@ -78,7 +67,6 @@ function clone(obj)
  * @param   {string|number} key - object's property key to add to
  * @returns {void}
  */
-function store(obj, elem, key)
-{
+function store(obj, elem, key) {
   Array.isArray(obj) ? obj.push(elem) : (obj[key] = elem);
 }

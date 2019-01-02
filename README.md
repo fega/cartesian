@@ -1,19 +1,18 @@
 # Cartesian
 Computes the cartesian product of arrays provided by an array or an object
 
-[![Build Status](https://img.shields.io/travis/alexindigo/cartesian/master.svg?style=flat-square)](https://travis-ci.org/alexindigo/cartesian)
-[![Coverage Status](https://img.shields.io/coveralls/alexindigo/cartesian/master.svg?style=flat-square)](https://coveralls.io/github/alexindigo/cartesian?branch=master)
+Is a clone of the cartesian packages, but this contains NO DEPENDENCIES.
 
 ## Install
 
 ```
-npm install cartesian --save
+npm install @fega/cartesian --save
 ```
 
 ## Examples
 
 ```javascript
-var cartesian = require('cartesian');
+var cartesian = require('@fega/cartesian');
 ```
 
 ### Array or arrays:
